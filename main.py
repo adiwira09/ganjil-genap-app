@@ -1,19 +1,29 @@
 import tkinter as tk
+from Header import create_text_frame
+from Webcam import WebcamViewer
 
-from Webcam import Webcam
-
-x_webcam = 100
-y_webcam = 180
-
+# Create the main application window
 root = tk.Tk()
+root.title("Ganjil Genap Application")
+root.state('zoomed')
+root.configure(bg="#CACFCB")
 
-canvas = tk.Canvas(root, width=1280, height=720)
-canvas.pack()
+# Frame 1 (Header)
+frame1 = tk.Frame(root, bd=2, padx=10, pady=10, bg="#D8DDD9",
+                  highlightbackground="black", highlightcolor="black", highlightthickness=2)
+frame1.place(relx=0.0145, rely=0.02, relwidth=0.625)
+create_text_frame(frame1)
 
-webcam = Webcam(root, canvas, x=x_webcam, y=y_webcam) # display webcam
+# Webcam frame
+webcam_viewer = WebcamViewer(root, zoom_percent=75, margin=20)
+webcam_viewer.start()
+
+# Frame 2 (Spreadsheet)
+frame2 = tk.Frame(root, bd=2, padx=10, pady=10, bg="#D8DDD9",
+                  highlightbackground="black", highlightcolor="black", highlightthickness=2)
+frame2.place(relx=0.65, rely=0.02,
+             relheight=0.955, relwidth=0.34,
+             anchor='nw')
+
 root.mainloop()
-
-# x1_excel, y1_excel = 1210, 680
-# x2_excel, y2_excel = 900, 50
-
-# canvas.create_rectangle(x1_excel, y1_excel, x2_excel, y2_excel, fill="grey")
+webcam_viewer.release()
