@@ -1,29 +1,24 @@
 import tkinter as tk
+
+from border import border_frame
 from Header import create_text_frame
 from Webcam import WebcamViewer
 
-# Create the main application window
+# Create the main application window using tkinter
 root = tk.Tk()
 root.title("Ganjil Genap Application")
 root.state('zoomed')
 root.configure(bg="#CACFCB")
 
-# Frame 1 (Header)
-frame1 = tk.Frame(root, bd=2, padx=10, pady=10, bg="#D8DDD9",
-                  highlightbackground="black", highlightcolor="black", highlightthickness=2)
-frame1.place(relx=0.0145, rely=0.02, relwidth=0.625)
+# Menggunakan fungsi untuk membuat frame dengan border
+frame1 = border_frame(root, relx=0.0145, rely=0.02, relwidth=0.625, relheight=None)
 create_text_frame(frame1)
+
+frame2 = border_frame(root, relx=0.65, rely=0.02, relwidth=0.34, relheight=0.955)
 
 # Webcam frame
 webcam_viewer = WebcamViewer(root, zoom_percent=75, margin=20)
 webcam_viewer.start()
-
-# Frame 2 (Spreadsheet)
-frame2 = tk.Frame(root, bd=2, padx=10, pady=10, bg="#D8DDD9",
-                  highlightbackground="black", highlightcolor="black", highlightthickness=2)
-frame2.place(relx=0.65, rely=0.02,
-             relheight=0.955, relwidth=0.34,
-             anchor='nw')
 
 root.mainloop()
 webcam_viewer.release()
