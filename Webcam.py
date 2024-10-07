@@ -43,8 +43,3 @@ class WebcamViewer:
 
     def release(self):
         self.cap.release()
-
-    def frame_tk(self):
-        border = Frame(self.root, highlightbackground="black", highlightcolor="black", highlightthickness=2)
-        border.place(x=self.margin, y=self.root.winfo_height() - self.margin, anchor='sw')
-
