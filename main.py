@@ -2,11 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 import pandas as pd
 
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-import time
-import threading
-
 from border import border_frame
 from Header import create_text_frame
 from Webcam import WebcamViewer
