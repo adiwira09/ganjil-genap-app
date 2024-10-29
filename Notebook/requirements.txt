@@ -1,2 +1,3 @@
 easyocr # testing ocr (sementara)
-ultralytics
+ultralytics==8.3.23
+tensorflow==2.18.0
