@@ -2,7 +2,7 @@ import tkinter as tk
 
 from border import border_frame
 from Header import create_text_frame
-from Webcam import WebcamViewer
+from Webcam import WebcamViewer, VideoPlayer
 from Excel import load_excel_data
 
 # Create the main application window using tkinter
@@ -18,9 +18,15 @@ create_text_frame(frame1)
 frame2 = border_frame(root, relx=0.65, rely=0.02, relwidth=0.34, relheight=0.955)
 load_excel_data(frame=frame2, file_path="file.xlsx")
 
-# Webcam frame
-webcam_viewer = WebcamViewer(root, zoom_percent=75, margin=20)
-webcam_viewer.start()
+# # Untuk Webcam frame
+# webcam_viewer = WebcamViewer(root, zoom_percent=75, margin=20)
+# webcam_viewer.start()
+
+# untuk video player frame
+video_path = 'Notebook/video/traffic.mp4'
+video_player = VideoPlayer(root, video_path=video_path, zoom_percent=75, margin=20)
+video_player.start()
 
 root.mainloop()
-webcam_viewer.release()
+# webcam_viewer.release() # untuk webcam
+video_player.release() # untuk video player
