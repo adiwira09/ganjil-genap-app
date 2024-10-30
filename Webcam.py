@@ -45,9 +45,9 @@ class WebcamViewer:
         self.cap.release()
 
 class VideoPlayer:
-    def __init__(self, root, video_path, zoom_percent=100, margin=50):
+    def __init__(self, root, video_path, detector, zoom_percent=100, margin=50):
         self.cap = cv2.VideoCapture(video_path)
-
+        self.detector = detector
         self.zoom_percent = zoom_percent
         self.margin = margin
         self.root = root
@@ -65,6 +65,8 @@ class VideoPlayer:
             dim = (width, height)
 
             resized_frame = cv2.resize(frame, dim, interpolation=cv2.INTER_AREA)
+
+            self.detector.detect(resized_frame)
 
             cv2image = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)
             img = Image.fromarray(cv2image)
