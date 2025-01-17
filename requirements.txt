@@ -1,0 +1,8 @@
+opencv_python==4.10.0.84
+Pillow==10.4.0
+tk==0.1.0
+customtkinter==5.2.2
+
+easyocr # testing ocr (sementara)
+ultralytics==8.3.23
+tensorflow==2.18.0
