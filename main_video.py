@@ -3,7 +3,7 @@ import tkinter as tk
 from border import border_frame
 from Header import create_text_frame
 from Webcam import VideoPlayer
-from Excel import load_csv_data
+from TreeView import load_sqlite_data
 from detection import YOLODetector
 
 # Create the main application window using tkinter
@@ -17,7 +17,7 @@ frame1 = border_frame(root, relx=0.0145, rely=0.02, relwidth=0.625, relheight=No
 create_text_frame(frame1)
 
 frame2 = border_frame(root, relx=0.65, rely=0.02, relwidth=0.34, relheight=0.955)
-load_csv_data(frame=frame2, file_path="result/vehicle_data.csv")
+load_sqlite_data(frame2)
 
 # untuk video player frame
 video_path = 'Notebook/video/traffic.mp4'

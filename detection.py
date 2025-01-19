@@ -5,6 +5,7 @@ from ultralytics import YOLO
 from datetime import date
 
 import util
+from database import Database
 
 class YOLODetector:
     def __init__(self, coco_model_path, np_model_path):
@@ -16,6 +17,7 @@ class YOLODetector:
         self.plate_text_dict = {}
         self.last_track_id = 0
 
+        self.database = Database()
     
     def detect(self, frame, trigger):
         detections = self.coco_model.track(frame, persist=True, conf=0.5, classes=[2])[0]
@@ -59,11 +61,17 @@ class YOLODetector:
 
                             keterangan = "Keterangan" # Example
 
-                            util.write_csv('result/vehicle_data.csv', int(track_id), 
-                                      vehicle_bbox, vehicle_bbox_score, 
-                                      plate_bbox, plate_bbox_score,
-                                      text_plate, text_plate_score, 
-                                      date.today(), keterangan)
+                            # util.write_csv('result/vehicle_data.csv', int(track_id), 
+                            #           vehicle_bbox, vehicle_bbox_score, 
+                            #           plate_bbox, plate_bbox_score,
+                            #           text_plate, text_plate_score, 
+                            #           date.today(), keterangan)
+
+                            self.database.write_db(int(track_id), 
+                                                  vehicle_bbox, vehicle_bbox_score, 
+                                                  plate_bbox, plate_bbox_score, 
+                                                  text_plate, text_plate_score, 
+                                                  date.today(), keterangan)
 
                             # cv2.imwrite('result/' + str(track_id) + '_car.jpg', roi)
                             # cv2.imwrite('result/' + str(track_id) + '_plate.jpg', plate)
